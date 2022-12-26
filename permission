@@ -5,10 +5,10 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 
 BURIQ () {
     curl -sS http://akses.jagoanneon-premium.com:81/akses > /root/tmp
-    data=( `cat /root/tmp | grep -E "^### " | awk '{print $2}'` )
+    data=( `cat /root/tmp | grep -E "^### " | awk '{print $4}'` )
     for user in "${data[@]}"
     do
-    exp=( `grep -E "^### $exp" "/root/tmp" | awk '{print $3}'` )
+    exp=( `grep -E "^### $user" "/root/tmp" | awk '{print $3}'` )
     d1=(`date -d "$exp" +%s`)
     d2=(`date -d "$biji" +%s`)
     exp2=$(( (d1 - d2) / 86400 ))
@@ -22,7 +22,7 @@ BURIQ () {
 }
 # https://raw.githubusercontent.com/errorcode86/akses/main/access 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP | awk '{print $2}')
+#Name=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
 CekOne=$(cat /usr/local/etc/.$Name.ini)
 
