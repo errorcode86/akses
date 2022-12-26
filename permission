@@ -1,6 +1,7 @@
 #!/bin/bash
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
+NAMECOM=$(curl -sS ipv4.icanhazip.com)
 echo $NAMECOM >/usr/local/etc/.$NAMECOM.ini
 CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 #########################
@@ -23,7 +24,6 @@ BURIQ () {
     rm -f  /root/tmp
 }
 # https://raw.githubusercontent.com/errorcode86/akses/main/access 
-MYIP=$(curl -sS ipv4.icanhazip.com)
 #Name=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP | awk '{print $4}')
 #echo $Name > /usr/local/etc/.$Name.ini
 #CekOne=$(cat /usr/local/etc/.$Name.ini)
