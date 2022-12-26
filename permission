@@ -1,6 +1,8 @@
 #!/bin/bash
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
+echo $NAMECOM >/usr/local/etc/.$NAMECOM.ini
+CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 #########################
 
 BURIQ () {
@@ -22,13 +24,13 @@ BURIQ () {
 }
 # https://raw.githubusercontent.com/errorcode86/akses/main/access 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP | awk '{print $4}')
-echo $Name > /usr/local/etc/.$Name.ini
-CekOne=$(cat /usr/local/etc/.$Name.ini)
+#Name=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP | awk '{print $4}')
+#echo $Name > /usr/local/etc/.$Name.ini
+#CekOne=$(cat /usr/local/etc/.$Name.ini)
 
 Bloman () {
-if [ -f "/etc/.$Name.ini" ]; then
-CekTwo=$(cat /etc/.$Name.ini)
+if [ -f "/etc/.$NAMECOM.ini" ]; then
+CekTwo=$(cat /etc/.$NAMECOM.ini)
     if [ "$CekOne" = "$CekTwo" ]; then
         res="Expired"
     fi
