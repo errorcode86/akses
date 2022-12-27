@@ -6,49 +6,14 @@ echo $NAMECOM >/usr/local/etc/.$NAMECOM.ini
 CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 #########################
 
-BURIQ () {
-    MYIP=$(curl -sS ipv4.icanhazip.com)
-    curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP > /root/tmp
-    data=(cat /root/tmp | grep -E "^### " | grep $MYIP)
-    for user in "${data[@]}"
-    do
-    exp=(`grep -E "^### $user" "/root/tmp" | cut -d ' ' -f 3`)
-    d1=(`date -d "$exp" +%s`)
-    d2=(`date -d "$biji" +%s`)
-    exp2=$(( (d1 - d2) / 86400 ))
-    if [[ "$exp2" -le "0" ]]; then
-    echo $user > /etc/.$user.ini
-    else
-    rm -f  /etc/.$user.ini > /dev/null 2>&1
-    fi
-    done
-    rm -f  /root/tmp
-}
-# https://raw.githubusercontent.com/errorcode86/akses/main/access 
-NAMECOM=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP)
-echo $NAMECOM > /usr/local/etc/.$NAMECOM.ini
-CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
-
-Bloman () {
-if [ -f "/etc/.$NAMECOM.ini" ]; then
-CekTwo=$(cat /etc/.$NAMECOM.ini)
-    if [ "$CekOne" = "$CekTwo" ]; then
-        res="Expired"
-    fi
-else
-res="Akses VPS Di TERIMA..."
-fi
-}
-
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
     IZIN=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP)
     if [ "$MYIP" = "$IZIN" ]; then
-    Bloman
+    res="Akses VPS Di Terima"
     else
     res="Akses Di Tolak!"
     fi
-    BURIQ
 }
 
 clear
