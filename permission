@@ -7,11 +7,12 @@ CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 #########################
 
 BURIQ () {
-    curl http://akses.jagoanneon-premium.com:81/akses > /root/tmp
-    data=( `cat /root/tmp | grep -E "^### " | awk '{print $4}'` )
+    MYIP=$(curl -sS ipv4.icanhazip.com)
+    curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP > /root/tmp
+    data=( `cat /root/tmp | grep -E "^### " | grep $MYIP` )
     for user in "${data[@]}"
     do
-    exp=( `grep -E "^### $user" "/root/tmp" | awk '{print $3}'` )
+    exp=( `grep -E "^### $user" "/root/tmp" | grep $MYIP` )
     d1=(`date -d "$exp" +%s`)
     d2=(`date -d "$biji" +%s`)
     exp2=$(( (d1 - d2) / 86400 ))
