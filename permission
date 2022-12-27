@@ -8,7 +8,7 @@ CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
-    IZIN=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP)
+    IZIN=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP | cut -d ' ' -f 2-4 | nl -s ')
     if [ "$MYIP" = "$IZIN" ]; then
     res="Akses VPS Di Terima"
     else
