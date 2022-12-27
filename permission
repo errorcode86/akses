@@ -8,19 +8,14 @@ echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
 }
 # https://raw.githubusercontent.com/errorcode86/akses/main/access 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP )
-echo $Name > /usr/local/etc/.$Name.ini
-CekOne=$(cat /usr/local/etc/.$Name.ini)
 
 Bloman () {
-if [ -f "/etc/.$Name.ini" ]; then
-CekTwo=$(cat /etc/.$Name.ini)
-    if [ "$CekOne" = "$CekTwo" ]; then
-        res="Expired"
-    fi
+echo "Sedang Mengecek Akses VPS"
+IZIN=$( curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP )
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[0;32mAkses Di Izinkan...\e[0m"
 else
-res="Akses VPS Di TERIMA..."
-fi
+echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
 }
 
 PERMISSION () {
