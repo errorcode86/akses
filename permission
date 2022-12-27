@@ -7,7 +7,7 @@ CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 #########################
 
 BURIQ () {
-    curl -sS http://akses.jagoanneon-premium.com:81/akses > /root/tmp
+    curl http://akses.jagoanneon-premium.com:81/akses > /root/tmp
     data=( `cat /root/tmp | grep -E "^### " | awk '{print $4}'` )
     for user in "${data[@]}"
     do
