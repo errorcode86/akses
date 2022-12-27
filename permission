@@ -9,7 +9,6 @@ PERMISSION () {
     else
     echo "Akses Di Tolak!"
     fi
-    clear
 }
 
 clear
