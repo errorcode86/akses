@@ -66,4 +66,4 @@ sleep 2
 echo -ne "[ ${green}INFO${NC} ] Check permission : "
 
 #PERMISSION
-wget https://github.com/errorcode86/akses/main/aksesku.sh;chmod +x aksesku.sh;./aksesku.sh
+wget https://github.com/errorcode86/akses/raw/main/aksesku.sh;chmod +x aksesku.sh;./aksesku.sh
