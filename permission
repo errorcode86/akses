@@ -12,7 +12,7 @@ BURIQ () {
     data=(cat /root/tmp | grep -E "^### " | grep $MYIP)
     for user in "${data[@]}"
     do
-    exp=(`grep -E "^### $user" "/root/tmp" | grep $MYIP`)
+    exp=(`grep -E "^### $user" "/root/tmp" | cut -d ' ' -f 3`)
     d1=(`date -d "$exp" +%s`)
     d2=(`date -d "$biji" +%s`)
     exp2=$(( (d1 - d2) / 86400 ))
