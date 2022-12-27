@@ -10,13 +10,7 @@ PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
     IZIN=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP))
     if [ "$MYIP" = "$IZIN" ]; then
-    res="Akses VPS Di Terima"
-    else
-    res="Akses Di Tolak!"
-    fi
 }
-
-clear
 
 red='\e[1;31m'
 green='\e[0;32m'
@@ -87,10 +81,15 @@ PERMISSION
 if [ -f /home/needupdate ]; then
 red "Your script need to update first !"
 exit 0
-elif [ "$res" = "Akses VPS Di Terima..." ]; then
-green "Permission Accepted!"
+echo -e "\e[0;32mAkses Di Izinkan...\e[0m"
 else
-red "Permission Denied!"
+echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
+echo "Kontak Admin Untuk Mendapatkan Akses Script"
+echo "Facebook   : Generasi Ronggolawe Tuban"
+echo "WhatsApp   : 087743253904"
+exit 0
+fi
+clear
 rm setup.sh > /dev/null 2>&1
 sleep 10
 exit 0
