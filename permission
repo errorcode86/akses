@@ -8,7 +8,7 @@ CekOne=$(cat /usr/local/etc/.$NAMECOM.ini)
 
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
-    IZIN=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP))
+    IZIN=$(curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP)
     if [ "$MYIP" = "$IZIN" ]; then
 }
 
