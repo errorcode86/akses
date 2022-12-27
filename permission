@@ -1,32 +1,15 @@
-BURIQ () {
-echo "Sedang Mengecek Akses VPS"
-IZIN=$( curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP )
-if [ $MYIP = $IZIN ]; then
-echo -e "\e[0;32mAkses Di Izinkan...\e[0m"
-else
-echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
-}
-# https://raw.githubusercontent.com/errorcode86/akses/main/access 
-MYIP=$(curl -sS ipv4.icanhazip.com)
-
-Bloman () {
-echo "Sedang Mengecek Akses VPS"
-IZIN=$( curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP )
-if [ $MYIP = $IZIN ]; then
-echo -e "\e[0;32mAkses Di Izinkan...\e[0m"
-else
-echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
-}
+#!/bin/bash
+#cok
 
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
     IZIN=$(curl -sS http://akses.jagoanneon-premium.com:81/akses | grep $MYIP)
     if [ "$MYIP" = "$IZIN" ]; then
-    Bloman
+    echo "Akses Diterima"
     else
-    res="Akses Di Tolak!"
+    echo "Akses Di Tolak!"
     fi
-    BURIQ
+    clear
 }
 
 clear
@@ -99,12 +82,16 @@ PERMISSION
 if [ -f /home/needupdate ]; then
 red "Your script need to update first !"
 exit 0
-elif [ "$BURIQ" = "Permission Accepted..." ]; then
-green "Permission Accepted!"
+MYIP=$(wget -qO- ipinfo.io/ip);
+echo "Sedang Mengecek Akses VPS"
+IZIN=$( curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP )
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[0;32mAkses Di Izinkan...\e[0m"
 else
-red "Permission Denied!"
-rm setup.sh > /dev/null 2>&1
-sleep 10
+echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
+echo "Kontak Admin Untuk Mendapatkan Akses Script"
+echo "Facebook   : Generasi Ronggolawe Tuban"
+echo "WhatsApp   : 087743253904"
 exit 0
 fi
 sleep 3
