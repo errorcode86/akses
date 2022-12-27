@@ -1,19 +1,10 @@
 BURIQ () {
-    curl -sS http://akses.jagoanneon-premium.com:81/akses > /root/tmp
-    data=( `cat /root/tmp | grep -E "^### " | awk '{print $2}'` )
-    for user in "${data[@]}"
-    do
-    exp=( `grep -E "^### $user" "/root/tmp" | awk '{print $3}'` )
-    d1=(`date -d "$exp" +%s`)
-    d2=(`date -d "$biji" +%s`)
-    exp2=$(( (d1 - d2) / 86400 ))
-    if [[ "$exp2" -le "0" ]]; then
-    echo $user > /etc/.$user.ini
-    else
-    rm -f  /etc/.$user.ini > /dev/null 2>&1
-    fi
-    done
-    rm -f  /root/tmp
+echo "Sedang Mengecek Akses VPS"
+IZIN=$( curl http://akses.jagoanneon-premium.com:81/akses | grep $MYIP )
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[0;32mAkses Di Izinkan...\e[0m"
+else
+echo -e "\033[41;37mVPS tidak diijinkan\e[0m";
 }
 # https://raw.githubusercontent.com/errorcode86/akses/main/access 
 MYIP=$(curl -sS ipv4.icanhazip.com)
